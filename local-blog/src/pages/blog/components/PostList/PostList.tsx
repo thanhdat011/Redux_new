@@ -1,11 +1,22 @@
 import PostItem from '../PostItem'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from 'store'
-import { deletePost, startEdittingPost } from 'pages/blog/blog.slice'
+import { RootState, useAppDispatch } from 'store'
+import { deletePost, getPostList, startEdittingPost } from 'pages/blog/blog.slice'
+import { useEffect } from 'react'
+import http from 'utils/http'
+
+//Gọi API trong useEffect()
 
 export default function PostList() {
   const postList = useSelector((state: RootState) => state.blog.postList)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    const promise = dispatch(getPostList())
+    return () => {
+      promise.abort()
+    }
+  }, [dispatch])
+
   const handleDelete = (postId: string) => {
     dispatch(deletePost(postId))
   }
