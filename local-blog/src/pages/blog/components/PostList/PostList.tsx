@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState, useAppDispatch } from 'store'
 import { deletePost, getPostList, startEdittingPost } from 'pages/blog/blog.slice'
 import { useEffect } from 'react'
-import http from 'utils/http'
 
 //Gọi API trong useEffect()
 
