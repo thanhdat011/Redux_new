@@ -15,6 +15,7 @@ const initalState: Post = {
 export default function CreatePost() {
   const [formData, setformData] = useState<Post>(initalState)
   const editingPost = useSelector((state: RootState) => state.blog.editingPost)
+  const loading = useSelector((state: RootState) => state.blog.loading)
   const dispatch = useAppDispatch()
   useEffect(() => {
     setformData(editingPost || initalState)
